@@ -125,7 +125,7 @@ upsample_filter_np_x2 = bilinear_upsample_weights(2,  # upsample_factor,
 upsample_filter_tensor_x4 = tf.Variable(upsample_filter_np_x2, name='vgg_16/fc8/t_conv_x4')
 # 16分之1 到8分之1  反卷积
 upsampled_logits = tf.nn.conv2d_transpose(upsampled_logits, upsample_filter_tensor_x4,
-                                          output_shape=aux_logits_8s,
+                                          output_shape=tf.shape(aux_logits_8s),
                                           strides=[1, 2, 2, 1],
                                           padding='SAME')
 
